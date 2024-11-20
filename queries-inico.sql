@@ -2,15 +2,15 @@
   
  CREATE DATATABASE recursosVFX; 
   
-/* CREAR TABLA RECURSOS */
-  CREATE TABLE resources(
-    resource_id SERIAL NOT NULL PRIMARY KEY, 
+/* CREAR TABLA SOFTWARE */
+  CREATE TABLE softwares(
+    software_id SERIAL NOT NULL PRIMARY KEY, 
     title varchar(40) NOT NULL UNIQUE,
     link varchar(255),
-    category varchar(40),
+    category_id int NOT NULL,
     tags text[],
     description_short varchar(255),
-    description_long varchar(1200),
+    description_long text,
     company varchar(40),
     price varchar(40),
     profiles text[],
@@ -18,11 +18,11 @@
     related text[],
     difficulty varchar(40),
     logo text,
-    img_main text[],
+    img_main text,
     imgs text[],
     creator text[],
-    created date,
-    updated date,
+    created DEFAULT date,
+    updated DEFAULT date,
     FOREIGN KEY (category) REFERENCES categories(resource_id)
   );
 
@@ -38,7 +38,7 @@ CREATE TABLE resources(
 
 /* CREAR TABLA RECURSOS PRUEBA CORTA B*/
 CREATE TABLE resources(
-    resource_id SERIAL NOT NULL PRIMARY KEY, 
+    software_id SERIAL NOT NULL PRIMARY KEY, 
     title varchar(40) NOT NULL UNIQUE,
     description_short varchar(255),
     logo varchar(255),
@@ -186,3 +186,13 @@ ON resources.category_id = categories.category_id
 
 SELECT * FROM public.categories
 ORDER BY category_id ASC 
+
+
+/* Seleccionar por Nombre y Etiquetas */
+
+SELECT * 
+    FROM softwares 
+    WHERE 
+        LOWER(title) LIKE LOWER('%ejemp%')
+        AND tags @> ARRAY['cosa']
+    LIMIT $3

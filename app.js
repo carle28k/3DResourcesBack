@@ -6,7 +6,6 @@ const { connect } = require("./helpers/dbConnect");
 const port = process.env.PORT || 3000;
 
 
-
 const app = express();
 //Para poder leer archivos JSON
 app.use(express.json());
