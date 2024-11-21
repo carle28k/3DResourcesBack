@@ -54,10 +54,10 @@ const getSoftwareById = async (software_id) => {
 //Crear un nuevo software
 const createSoftware = async (newSoftware) => {
     // Extraer las propiedades de newSoftware
-    const { title, description_short, logo, category, tags } = newSoftware;
+    /* const { title, description_short, logo, category, tags } = newSoftware; */
     
     try {
-        const respuesta = await connect(softwares.createSoftware, [title, description_short, logo, category, tags]);
+        const respuesta = await connect(softwares.createSoftware, newSoftware);
         return respuesta;
     } catch (error) {
         console.error(error);

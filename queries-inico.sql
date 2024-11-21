@@ -7,7 +7,6 @@
     software_id SERIAL NOT NULL PRIMARY KEY, 
     title varchar(40) NOT NULL UNIQUE,
     link varchar(255),
-    category_id int NOT NULL,
     tags text[],
     description_short varchar(255),
     description_long text,
@@ -36,8 +35,8 @@ CREATE TABLE resources(
     FOREIGN KEY (category_id) REFERENCES categories(category_id)
   );
 
-/* CREAR TABLA RECURSOS PRUEBA CORTA B*/
-CREATE TABLE resources(
+/* CREAR TABLA SOFTWARES PRUEBA CORTA B*/
+CREATE TABLE softwares(
     software_id SERIAL NOT NULL PRIMARY KEY, 
     title varchar(40) NOT NULL UNIQUE,
     description_short varchar(255),
